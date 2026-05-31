@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amir Hamza | Digital Marketer & Business Strategist</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                        body: ['Plus Jakarta Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        dark: '#050814',
+                        primary: '#38bdf8',
+                        secondary: '#818cf8',
+                        accent: '#c084fc',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom CSS -->
+    <style>
+        body { background-color: #050814; color: #e2e8f0; overflow-x: hidden; }
+        
+        /* Glassmorphism Effects */
+        .glass-nav { background: rgba(5, 8, 20, 0.7); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
+        .glass-card { background: linear-gradient(145deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.05); border-radius: 1.25rem; transition: all 0.4s ease; }
+        .glass-card:hover { border-color: rgba(56, 189, 248, 0.3); transform: translateY(-5px); box-shadow: 0 10px 30px -10px rgba(56, 189, 248, 0.15); }
+        
+        /* Gradients */
+        .text-gradient { background: linear-gradient(to right, #38bdf8, #818cf8, #c084fc); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .bg-gradient-btn { background: linear-gradient(135deg, #38bdf8, #818cf8); transition: all 0.3s ease; }
+        .bg-gradient-btn:hover { background: linear-gradient(135deg, #818cf8, #c084fc); box-shadow: 0 0 20px rgba(129, 140, 248, 0.4); }
+        
+        /* Glowing Orbs in Background */
+        .glow-orb { position: absolute; border-radius: 50%; filter: blur(90px); z-index: -1; opacity: 0.3; pointer-events: none; }
+        .orb-1 { top: -10%; left: -10%; width: 400px; height: 400px; background: rgba(56, 189, 248, 0.4); }
+        .orb-2 { bottom: 20%; right: -5%; width: 500px; height: 500px; background: rgba(192, 132, 252, 0.2); }
+
+        /* --- Professional On-Load Animations --- */
+        .load-fade-down {
+            opacity: 0;
+            animation: fadeDownAnim 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        .load-fade-up {
+            opacity: 0;
+            animation: fadeUpAnim 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        .hero-img-anim {
+            opacity: 0;
+            /* Runs only once on load, then stays static */
+            animation: heroZoomIn 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes fadeDownAnim {
+            0% { opacity: 0; transform: translateY(-30px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeUpAnim {
+            0% { opacity: 0; transform: translateY(40px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes heroZoomIn {
+            0% { opacity: 0; transform: scale(0.85) translateY(30px); }
+            100% { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        /* Scroll Reveal Animations (For inner sections) */
+        .reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s cubic-bezier(0.5, 0, 0, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        
+        .reveal-left { opacity: 0; transform: translateX(-50px); transition: all 0.8s cubic-bezier(0.5, 0, 0, 1); }
+        .reveal-left.active { opacity: 1; transform: translateX(0); }
+        
+        .reveal-right { opacity: 0; transform: translateX(50px); transition: all 0.8s cubic-bezier(0.5, 0, 0, 1); }
+        .reveal-right.active { opacity: 1; transform: translateX(0); }
+        
+        /* --- Attractive Order Now Button Animation --- */
+        .animated-pulse-btn {
+            box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
+            animation: soft-pulse 2s infinite alternate;
+        }
+        @keyframes soft-pulse {
+            0% { box-shadow: 0 0 10px rgba(56, 189, 248, 0.4); }
+            100% { box-shadow: 0 0 25px rgba(192, 132, 252, 0.7); }
+        }
+        .btn-shimmer {
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-shimmer::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.4) 50%, rgba(255,255,255,0) 100%);
+            transform: skewX(-20deg);
+            animation: shimmer-effect 2.5s infinite;
+        }
+        @keyframes shimmer-effect {
+            0% { left: -100%; }
+            15% { left: 200%; }
+            100% { left: 200%; }
+        }
+
+        /* Hero Image Profile Glow - Professional frame */
+        .user-profile-frame {
+            position: relative;
+            background: linear-gradient(145deg, rgba(56, 189, 248, 0.15), rgba(129, 140, 248, 0.1));
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 0.5rem;
+            border-radius: 2rem;
+            box-shadow: 0 20px 50px -15px rgba(56, 189, 248, 0.2);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #050814; }
+        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #818cf8; }
+
+        /* Social Media Specific Brand Colors & Hover Animations */
+        .social-btn { transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        .social-btn:hover { transform: translateY(-5px) scale(1.05); }
+        
+        .fb-btn { background: rgba(24, 119, 242, 0.1); color: #1877F2; border: 1px solid rgba(24, 119, 242, 0.2); }
+        .fb-btn:hover { background: #1877F2; color: #fff; box-shadow: 0 10px 20px -5px rgba(24, 119, 242, 0.5); }
+        
+        .ig-btn { background: rgba(225, 48, 108, 0.1); color: #E1306C; border: 1px solid rgba(225, 48, 108, 0.2); }
+        .ig-btn:hover { background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); color: #fff; box-shadow: 0 10px 20px -5px rgba(225, 48, 108, 0.5); border-color: transparent; }
+        
+        .in-btn { background: rgba(0, 119, 181, 0.1); color: #0077B5; border: 1px solid rgba(0, 119, 181, 0.2); }
+        .in-btn:hover { background: #0077B5; color: #fff; box-shadow: 0 10px 20px -5px rgba(0, 119, 181, 0.5); }
+    </style>
+</head>
+<body class="antialiased font-body relative">
+
+    <!-- Background Glow Elements -->
+    <div class="glow-orb orb-1"></div>
+    <div class="glow-orb orb-2"></div>
+
+    <!-- Navigation -->
+    <header class="fixed top-0 w-full z-50 glass-nav transition-all duration-300 load-fade-down" id="navbar">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <!-- ডট রিমুভ করে স্পেস দেওয়া হয়েছে -->
+            <a href="#" class="text-2xl font-bold font-sans tracking-wide">
+                Amir <span class="text-gradient">Hamza</span>
+            </a>
+            
+            <!-- Desktop Menu -->
+            <nav class="hidden md:flex space-x-8 items-center font-medium">
+                <a href="#home" class="hover:text-primary transition-colors">Home</a>
+                <a href="#about" class="hover:text-primary transition-colors">About</a>
+                <a href="#services" class="hover:text-primary transition-colors">Services</a>
+                <a href="#reviews" class="hover:text-primary transition-colors">Reviews</a>
+                <a href="#contact" class="hover:text-primary transition-colors">Contact</a>
+                <!-- Order Now button with highly attractive animation -->
+                <a href="https://www.fiverr.com/s/pdEbP9o" target="_blank" class="bg-gradient-btn animated-pulse-btn btn-shimmer px-6 py-2 rounded-full text-white font-semibold flex items-center gap-2">
+                    Order Now <i class="fa-solid fa-arrow-right"></i>
+                </a>
+            </nav>
+
+            <!-- Mobile Menu Toggle -->
+            <button class="md:hidden text-2xl focus:outline-none text-white" id="mobile-menu-btn">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+        <!-- Mobile Menu -->
+        <div class="md:hidden hidden absolute top-full left-0 w-full glass-nav flex-col text-center py-4 space-y-4 shadow-xl" id="mobile-menu">
+            <a href="#home" class="block hover:text-primary">Home</a>
+            <a href="#about" class="block hover:text-primary">About</a>
+            <a href="#services" class="block hover:text-primary">Services</a>
+            <a href="#contact" class="block hover:text-primary">Contact</a>
+            <a href="https://www.fiverr.com/s/pdEbP9o" target="_blank" class="block text-primary font-bold">Order Now</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen flex items-center justify-center pt-28 pb-12 px-6 relative">
+        <div class="container mx-auto grid md:grid-cols-2 gap-12 lg:gap-8 items-center">
+            
+            <!-- Hero Text (Left Side) - With Load Animation -->
+            <div class="space-y-6 md:pr-4">
+                <div class="load-fade-up inline-block px-4 py-1.5 rounded-full border border-white/10 bg-white/5 text-primary font-medium text-sm mb-1" style="animation-delay: 0.2s;">
+                     Hi, I'm Amir Hamza
+                </div>
+                <h1 class="load-fade-up text-[2.75rem] md:text-5xl lg:text-[4.2rem] font-bold leading-[1.1] font-sans" style="animation-delay: 0.4s;">
+                    Helping Businesses Grow Through <br> 
+                    <span class="text-gradient">Smart Digital Marketing</span>
+                </h1>
+                <p class="load-fade-up text-lg lg:text-xl text-gray-400 leading-relaxed max-w-lg" style="animation-delay: 0.6s;">
+                    I am a Digital Marketer specializing in Social Media Growth and Online Branding. I help businesses build a strong online presence through strategic content and digital marketing strategies.
+                </p>
+                <div class="load-fade-up flex flex-wrap gap-4 pt-4" style="animation-delay: 0.8s;">
+                    <a href="https://tinyurl.com/3wh56d3r" target="_blank" class="bg-[#25D366] hover:bg-[#1ebd5b] text-white px-8 py-3.5 rounded-full font-semibold transition-all shadow-lg shadow-green-500/30 flex items-center gap-2 hover:scale-105">
+                        <i class="fa-brands fa-whatsapp text-xl"></i> Chat on WhatsApp
+                    </a>
+                    <a href="#about" class="px-8 py-3.5 rounded-full font-semibold border border-white/20 hover:bg-white/10 transition-all hover:scale-105">
+                        Learn More
+                    </a>
+                </div>
+                
+                <div class="load-fade-up flex gap-5 pt-6" style="animation-delay: 1s;">
+                    <a href="https://www.facebook.com/hm.amir.hamza.912715" target="_blank" class="w-12 h-12 rounded-full flex items-center justify-center text-xl social-btn fb-btn">
+                        <i class="fa-brands fa-facebook-f"></i>
+                    </a>
+                    <a href="https://www.instagram.com/freelancer.2422/" target="_blank" class="w-12 h-12 rounded-full flex items-center justify-center text-xl social-btn ig-btn">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+                    <a href="https://linkedin.com/in/amirhamzafreelancer" target="_blank" class="w-12 h-12 rounded-full flex items-center justify-center text-xl social-btn in-btn">
+                        <i class="fa-brands fa-linkedin-in"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Hero Image Section - One Time Animation on Load -->
+            <div class="flex justify-center md:justify-end hero-image-container md:-mt-16 lg:-mt-20">
+                <div class="hero-img-anim user-profile-frame w-[280px] sm:w-[320px] md:w-[380px] lg:w-[460px] aspect-square" style="animation-delay: 0.5s;">
+                    <img src="https://i.postimg.cc/jdPNcm4G/Untitled-design-(1).png" alt="Amir Hamza Hero Image" class="w-full h-full object-cover rounded-[1.7rem]">
+                </div>
+            </div>
+            
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 px-6 relative z-10 overflow-hidden">
+        <div class="container mx-auto grid md:grid-cols-2 gap-16 items-center">
+            <div class="reveal-left relative">
+                <div class="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-600 rounded-3xl transform rotate-3 opacity-30 blur-lg"></div>
+                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800" alt="Project Analysis" class="rounded-3xl relative z-10 border border-white/10 shadow-2xl">
+            </div>
+            <div class="space-y-6 reveal-right">
+                <h2 class="text-3xl md:text-5xl font-bold font-sans">Turning Ideas Into <br> <span class="text-gradient">Digital Growth</span></h2>
+                <p class="text-gray-400 leading-relaxed text-lg">
+                    Digital marketing is more than just promotion for me, it’s about building meaningful online presence and helping brands connect with the right audience.
+                </p>
+                <p class="text-gray-400 leading-relaxed">
+                    I am Amir Hamza, an experienced digital marketer and creative strategist. With 4+ years of experience, I help brands establish themselves strongly on digital platforms. I work in social media marketing, YouTube SEO, and content development, combining data-driven strategy and creative execution, which ensures real business growth.
+                </p>
+                <p class="text-gray-300 font-medium border-l-4 border-primary pl-4">
+                    My goal is to create effective, transparent, and long-term digital success for every brand.
+                </p>
+                <div class="flex gap-8 pt-4">
+                    <div>
+                        <h3 class="text-4xl font-bold text-white">100<span class="text-primary">%</span></h3>
+                        <p class="text-sm text-gray-400 mt-1">Project Transparency</p>
+                    </div>
+                    <div>
+                        <h3 class="text-4xl font-bold text-white"><i class="fa-solid fa-chart-line text-primary"></i></h3>
+                        <p class="text-sm text-gray-400 mt-1">Tailored Growth Solutions</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-24 px-6 bg-white/5 border-y border-white/5 relative">
+        <div class="container mx-auto text-center max-w-3xl mb-16 reveal">
+            <h2 class="text-3xl md:text-5xl font-bold font-sans mb-4">How I Can <span class="text-gradient">Help You</span></h2>
+            <p class="text-gray-400">I provide a comprehensive suite of digital marketing solutions tailored to help your business thrive in a competitive online landscape.</p>
+        </div>
+        
+        <div class="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            
+            <div class="glass-card p-8 reveal">
+                <div class="w-14 h-14 rounded-2xl bg-blue-500/20 text-blue-400 flex items-center justify-center text-2xl mb-6"><i class="fa-solid fa-share-nodes"></i></div>
+                <h3 class="text-xl font-semibold mb-3 text-white">Social Media Growth Strategy</h3>
+                <p class="text-sm text-gray-400">Building community and increasing engagement across all major platforms.</p>
+            </div>
+            
+            <div class="glass-card p-8 reveal" style="transition-delay: 0.1s;">
+                <div class="w-14 h-14 rounded-2xl bg-red-500/20 text-red-500 flex items-center justify-center text-2xl mb-6"><i class="fa-brands fa-youtube"></i></div>
+                <h3 class="text-xl font-semibold mb-3 text-white">YouTube SEO</h3>
+                <p class="text-sm text-gray-400">Optimizing content to rank higher in searches and suggest videos for more views.</p>
+            </div>
+
+            <div class="glass-card p-8 reveal" style="transition-delay: 0.2s;">
+                <div class="w-14 h-14 rounded-2xl bg-blue-600/20 text-blue-500 flex items-center justify-center text-2xl mb-6"><i class="fa-brands fa-meta"></i></div>
+                <h3 class="text-xl font-semibold mb-3 text-white">Meta Ads Management</h3>
+                <p class="text-sm text-gray-400">Data-driven Facebook and Instagram ad campaigns that convert.</p>
+            </div>
+
+            <div class="glass-card p-8 reveal" style="transition-delay: 0.3s;">
+                <div class="w-14 h-14 rounded-2xl bg-purple-500/20 text-purple-400 flex items-center justify-center text-2xl mb-6"><i class="fa-solid fa-magnifying-glass-chart"></i></div>
+                <h3 class="text-xl font-semibold mb-3 text-white">Keyword & Competitor Analysis</h3>
+                <p class="text-sm text-gray-400">In-depth research to find your competitive edge in the market.</p>
+            </div>
+
+            <div class="glass-card p-8 reveal">
+                <div class="w-14 h-14 rounded-2xl bg-pink-500/20 text-pink-400 flex items-center justify-center text-2xl mb-6"><i class="fa-solid fa-pen-nib"></i></div>
+                <h3 class="text-xl font-semibold mb-3 text-white">Graphic Design</h3>
+                <p class="text-sm text-gray-400">Stunning visuals that capture attention and represent your brand identity.</p>
+            </div>
+
+            <div class="glass-card p-8 reveal" style="transition-delay: 0.1s;">
+                <div class="w-14 h-14 rounded-2xl bg-green-500/20 text-green-400 flex items-center justify-center text-2xl mb-6"><i class="fa-solid fa-gears"></i></div>
+                <h3 class="text-xl font-semibold mb-3 text-white">Social Media Account Setup</h3>
+                <p class="text-sm text-gray-400">Professional optimization of your business profiles for maximum impact.</p>
+            </div>
+
+            <div class="glass-card p-8 reveal" style="transition-delay: 0.2s;">
+                <div class="w-14 h-14 rounded-2xl bg-yellow-500/20 text-yellow-400 flex items-center justify-center text-2xl mb-6"><i class="fa-solid fa-clapperboard"></i></div>
+                <h3 class="text-xl font-semibold mb-3 text-white">Short-Form Video Editing</h3>
+                <p class="text-sm text-gray-400">High-energy Reels, TikToks, and Shorts that keep viewers watching.</p>
+            </div>
+
+            <div class="glass-card p-8 reveal" style="transition-delay: 0.3s;">
+                <div class="w-14 h-14 rounded-2xl bg-indigo-500/20 text-indigo-400 flex items-center justify-center text-2xl mb-6"><i class="fa-solid fa-object-group"></i></div>
+                <h3 class="text-xl font-semibold mb-3 text-white">Social Media Post Design</h3>
+                <p class="text-sm text-gray-400">Consistent, high-quality content tailored for each specific platform.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Me Section -->
+    <section class="py-24 px-6 container mx-auto overflow-hidden">
+        <div class="text-center max-w-2xl mx-auto mb-16 reveal">
+            <h2 class="text-3xl md:text-5xl font-bold font-sans mb-4">Why <span class="text-gradient">Choose Me?</span></h2>
+            <p class="text-gray-400">The difference between standard results and exceptional growth.</p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            <div class="glass-card p-8 border-t-4 border-t-red-500/50 reveal-left">
+                <h3 class="text-2xl font-bold text-gray-300 mb-6 text-center">Typical Freelancers</h3>
+                <ul class="space-y-4 text-gray-400">
+                    <li class="flex items-center gap-3"><i class="fa-solid fa-xmark text-red-400"></i> Generic one-size-fits-all approach</li>
+                    <li class="flex items-center gap-3"><i class="fa-solid fa-xmark text-red-400"></i> Slow communication</li>
+                    <li class="flex items-center gap-3"><i class="fa-solid fa-xmark text-red-400"></i> Focus on quantity over quality</li>
+                    <li class="flex items-center gap-3"><i class="fa-solid fa-xmark text-red-400"></i> No post-project support</li>
+                    <li class="flex items-center gap-3"><i class="fa-solid fa-xmark text-red-400"></i> Hidden costs</li>
+                </ul>
+            </div>
+            
+            <div class="glass-card p-8 border-t-4 border-t-primary relative overflow-hidden shadow-[0_0_30px_rgba(56,189,248,0.1)] reveal-right">
+                <div class="absolute top-0 right-0 w-32 h-32 bg-primary/20 blur-[50px]"></div>
+                <h3 class="text-2xl font-bold text-white mb-6 text-center">Amir Hamza</h3>
+                <ul class="space-y-4 text-white">
+                    <li class="flex items-center gap-3"><i class="fa-solid fa-check-circle text-primary"></i> Custom tailored solutions</li>
+                    <li class="flex items-center gap-3"><i class="fa-solid fa-check-circle text-primary"></i> Fast direct communication</li>
+                    <li class="flex items-center gap-3"><i class="fa-solid fa-check-circle text-primary"></i> Quality-driven work</li>
+                    <li class="flex items-center gap-3"><i class="fa-solid fa-check-circle text-primary"></i> Long-term support</li>
+                    <li class="flex items-center gap-3"><i class="fa-solid fa-check-circle text-primary"></i> 100% transparent workflow</li>
+                </ul>
+            </div>
+        </div>
+        <div class="mt-12 text-center reveal">
+            <p class="text-xl font-medium text-gray-300 max-w-3xl mx-auto">
+                My goal is not just to be your service provider, but to be a partner in your long-term success.
+            </p>
+        </div>
+    </section>
+
+    <!-- Client Reviews Section -->
+    <section id="reviews" class="py-24 px-6 bg-white/5 border-y border-white/5">
+        <div class="container mx-auto text-center max-w-2xl mb-16 reveal">
+            <h2 class="text-3xl md:text-5xl font-bold font-sans mb-4">Client <span class="text-gradient">Reviews</span></h2>
+            <p class="text-gray-400">Honest feedback from people and brands I've helped grow.</p>
+        </div>
+
+        <div class="container mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="glass-card p-6 reveal">
+                <p class="text-gray-300 text-sm mb-6">Amir Hamza handled our social media marketing professionally. The strategy and content quality helped improve our engagement and audience reach significantly. Communication was smooth throughout the project.</p>
+                <div class="flex items-center gap-3">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80" alt="David Chen" class="w-10 h-10 rounded-full object-cover border border-white/20">
+                    <div><h4 class="font-bold text-white text-sm">David Chen</h4><p class="text-xs text-gray-400">CEO, TechFlow Solutions</p></div>
+                </div>
+            </div>
+            
+            <div class="glass-card p-6 reveal" style="transition-delay: 0.1s;">
+                <p class="text-gray-300 text-sm mb-6">Everything was delivered as promised. The communication, creativity, and execution made the entire experience easy and stress-free.</p>
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full bg-pink-500/20 text-pink-400 flex items-center justify-center font-bold text-lg border border-pink-500/30">J</div>
+                    <div><h4 class="font-bold text-white text-sm">Jessica Lee</h4><p class="text-xs text-gray-400">Event Strategist</p></div>
+                </div>
+            </div>
+
+            <div class="glass-card p-6 reveal" style="transition-delay: 0.2s;">
+                <p class="text-gray-300 text-sm mb-6">Great experience working together. The video editing and creative work were clean, modern, and aligned with our business goals.</p>
+                <div class="flex items-center gap-3">
+                    <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=100&q=80" alt="Mark Thompson" class="w-10 h-10 rounded-full object-cover border border-white/20">
+                    <div><h4 class="font-bold text-white text-sm">Mark Thompson</h4><p class="text-xs text-gray-400">Marketing Director, E-com Labs</p></div>
+                </div>
+            </div>
+            
+            <div class="glass-card p-6 reveal md:col-span-2 lg:col-span-3 border border-primary/30 bg-primary/5">
+                <p class="text-gray-200 text-base md:text-lg mb-6 font-normal">Working with Amir Hamza was a smooth and professional experience. The marketing strategy was well-planned, communication was consistent, and the overall execution exceeded expectations. We saw clear improvements in audience engagement, brand visibility, and social media performance within a short period of time. Highly recommended for anyone looking to grow their online presence effectively.</p>
+                <div class="flex items-center gap-3">
+                    <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=150&q=80" alt="James Wilson" class="w-12 h-12 rounded-full object-cover border-2 border-primary/50">
+                    <div><h4 class="font-bold text-white">James Wilson</h4><p class="text-sm text-gray-400">Project Manager, Blue Horizon</p></div>
+                </div>
+            </div>
+
+            <div class="glass-card p-6 reveal">
+                <p class="text-gray-300 text-sm mb-6">Amir Hamza is highly skilled and reliable. His SEO strategy and content optimization helped improve our channel performance and audience growth.</p>
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full bg-blue-500/20 text-blue-400 flex items-center justify-center font-bold text-lg border border-blue-500/30">M</div>
+                    <div><h4 class="font-bold text-white text-sm">Michael Brown</h4><p class="text-xs text-gray-400">YouTube Content Creator</p></div>
+                </div>
+            </div>
+
+            <div class="glass-card p-6 reveal" style="transition-delay: 0.1s;">
+                <p class="text-gray-300 text-sm mb-6">Professional, creative, and detail-oriented. The content quality and branding direction were impressive, and the collaboration was smooth.</p>
+                <div class="flex items-center gap-3">
+                    <img src="https://images.unsplash.com/photo-1507591064344-4c6ce005b128?auto=format&fit=crop&w=100&q=80" alt="Robert Foster" class="w-10 h-10 rounded-full object-cover border border-white/20">
+                    <div><h4 class="font-bold text-white text-sm">Robert Foster</h4><p class="text-xs text-gray-400">Apparel Brand Owner</p></div>
+                </div>
+            </div>
+
+            <div class="glass-card p-6 reveal" style="transition-delay: 0.2s;">
+                <p class="text-gray-300 text-sm mb-6">The content strategy was well planned and matched our brand perfectly. Everything was delivered on time, and the overall collaboration experience was very professional.</p>
+                <div class="flex items-center gap-3">
+                    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=100&q=80" alt="Sarah Jenkins" class="w-10 h-10 rounded-full object-cover border border-white/20">
+                    <div><h4 class="font-bold text-white text-sm">Sarah Jenkins</h4><p class="text-xs text-gray-400">Founder, Bloom Digital</p></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-24 px-6 relative overflow-hidden" id="contact">
+        <div class="absolute inset-0 bg-gradient-to-br from-blue-900/40 via-purple-900/40 to-dark z-0"></div>
+        <div class="container mx-auto max-w-4xl glass-card p-12 text-center relative z-10 reveal border border-white/20">
+            <h2 class="text-4xl md:text-5xl font-bold font-sans mb-6 text-white">Ready to take your digital presence to the next level?</h2>
+            <p class="text-lg text-gray-300 mb-8 max-w-2xl mx-auto">Let’s collaborate to build strategies that drive real growth and achieve your business goals.</p>
+            
+            <div class="flex flex-wrap justify-center gap-4 mb-8 text-sm font-medium text-gray-300">
+                <span class="bg-white/10 px-4 py-2 rounded-full"><i class="fa-solid fa-check text-primary mr-2"></i>Free Consultation</span>
+                <span class="bg-white/10 px-4 py-2 rounded-full"><i class="fa-solid fa-check text-primary mr-2"></i>Custom Strategy</span>
+                <span class="bg-white/10 px-4 py-2 rounded-full"><i class="fa-solid fa-check text-primary mr-2"></i>24/7 Support</span>
+            </div>
+
+            <a href="https://www.fiverr.com/amirhamzawork" target="_blank" class="bg-gradient-btn animated-pulse-btn btn-shimmer text-white px-10 py-4 rounded-full font-bold text-lg inline-flex items-center gap-3 hover:scale-105 transition-transform">
+                Start Your Journey <i class="fa-solid fa-rocket"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-white/10 bg-[#02040a] pt-16 pb-8 px-6">
+        <div class="container mx-auto grid md:grid-cols-3 gap-12 mb-12">
+            <div class="space-y-4 reveal">
+                <!-- ডট রিমুভ করা হয়েছে -->
+                <a href="#" class="text-2xl font-bold font-sans tracking-wide block">
+                    Amir <span class="text-gradient">Hamza</span>
+                </a>
+                <p class="text-gray-400 text-sm">Digital Marketing Expert & Business Growth Strategist. Helping businesses scale through result-driven digital solutions.</p>
+                <div class="flex gap-4 pt-2">
+                    <a href="https://www.facebook.com/hm.amir.hamza.912715" target="_blank" class="text-gray-400 hover:text-[#1877F2] transition-colors text-xl"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/freelancer.2422/" target="_blank" class="text-gray-400 hover:text-[#E1306C] transition-colors text-xl"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://linkedin.com/in/amirhamzafreelancer" target="_blank" class="text-gray-400 hover:text-[#0077B5] transition-colors text-xl"><i class="fa-brands fa-linkedin-in"></i></a>
+                </div>
+            </div>
+
+            <div class="reveal" style="transition-delay: 0.1s;">
+                <h4 class="text-white font-bold mb-4">Quick Links</h4>
+                <ul class="space-y-2 text-gray-400">
+                    <li><a href="#home" class="hover:text-primary transition-colors">Home</a></li>
+                    <li><a href="#about" class="hover:text-primary transition-colors">About</a></li>
+                    <li><a href="#services" class="hover:text-primary transition-colors">Services</a></li>
+                    <li><a href="#contact" class="hover:text-primary transition-colors">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="reveal" style="transition-delay: 0.2s;">
+                <h4 class="text-white font-bold mb-4">Contact Info</h4>
+                <ul class="space-y-4 text-gray-400">
+                    <li class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-primary"><i class="fa-solid fa-envelope"></i></div>
+                        <div>
+                            <p class="text-xs text-gray-500">Email</p>
+                            <a href="mailto:digitalamirhamza@gmail.com" class="hover:text-white transition-colors">digitalamirhamza@gmail.com</a>
+                        </div>
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-green-500"><i class="fa-brands fa-whatsapp text-lg"></i></div>
+                        <div>
+                            <p class="text-xs text-gray-500">WhatsApp</p>
+                            <a href="https://tinyurl.com/3wh56d3r" target="_blank" class="hover:text-white transition-colors">+880 1402-372259</a>
+                        </div>
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-secondary"><i class="fa-solid fa-location-dot"></i></div>
+                        <div>
+                            <p class="text-xs text-gray-500">Location</p>
+                            <p>Dhaka, Bangladesh</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="container mx-auto flex flex-col md:flex-row justify-between items-center pt-8 border-t border-white/10 text-gray-500 text-sm reveal">
+            <p>© 2026 Amir Hamza. All rights reserved.</p>
+            <a href="#home" class="hover:text-white transition-colors mt-4 md:mt-0 flex items-center gap-2">
+                Back to Top <i class="fa-solid fa-arrow-up"></i>
+            </a>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://tinyurl.com/3wh56d3r" target="_blank" class="fixed bottom-6 right-6 z-50 bg-[#25D366] text-white w-14 h-14 rounded-full flex items-center justify-center text-3xl shadow-lg shadow-green-500/40 hover:scale-110 transition-transform hover:bg-[#1ebd5b]">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <!-- JavaScript for Interactions -->
+    <script>
+        // Mobile Menu Toggle
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+            menu.classList.toggle('flex');
+        });
+        menu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                menu.classList.add('hidden');
+                menu.classList.remove('flex');
+            });
+        });
+
+        // Navbar blur effect on scroll
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('shadow-lg', 'bg-dark/80');
+            } else {
+                navbar.classList.remove('shadow-lg', 'bg-dark/80');
+            }
+        });
+
+        // Scroll Reveal Animations
+        const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+        const revealOptions = { threshold: 0.1, rootMargin: "0px 0px -50px 0px" };
+        
+        const revealOnScroll = new IntersectionObserver(function(entries, observer) {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) return;
+                entry.target.classList.add('active');
+                observer.unobserve(entry.target);
+            });
+        }, revealOptions);
+
+        revealElements.forEach(el => revealOnScroll.observe(el));
+    </script>
+</body>
+</html>
